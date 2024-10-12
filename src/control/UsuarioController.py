@@ -19,7 +19,7 @@ class UsuarioController():
         except Usuario.DoesNotExist:
             return False, "Email não encontrado."
         
-    def listar():
+    def listar(self):
         try:
             usuarios = Usuario.select()
             return [
@@ -33,7 +33,7 @@ class UsuarioController():
         except Exception as e:
             return str(e)
         
-    def atualizar( id, nome, email, senha):
+    def atualizar(id, nome, email, senha):
         try:
             usuario = Usuario.get(Usuario.id == id)
             usuario.nome = nome
