@@ -36,7 +36,7 @@ class ProdutoController(Produto):
             produto.descricao = descricao
             produto.save()
             return True, f'Produto "{nome}" atualizado com sucesso!'
-        except Usuario.DoesNotExist:
+        except Produto.DoesNotExist:
             return False, f'Produto "{nome}" não encontrado!'
         except Exception as e:
             return False, str(e)
