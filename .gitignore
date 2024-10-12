@@ -1,0 +1,5 @@
+venv/
+padaria.db
+
+_pycache_/
+
