@@ -1,15 +1,31 @@
 from src.model.Produto import Produto
 
-class ProdutoController(Produto):
+class ProdutoController:
 
-    def adicionarProduto(self, nome, preco, qntdEstoque, categoria, descricao):
+    def adicionarProduto( nome, preco, qntdEstoque, categoria, descricao):
         try:
             produto = Produto.create(nome=nome, preco=preco, qntdEstoque=qntdEstoque, categoria=categoria, descricao=descricao)
             print("Produto cadastrado com sucesso!")
         except Exception as e:
             print(f"Erro: {e}")
 
-    def listarProduto(self):
+    def listarProdutoID(produto_id):
+        try:
+            produto = Produto.get(Produto.id == produto_id)
+            print({
+                'Id': produto.id,
+                'Nome': produto.nome,
+                'Preço': produto.preco,
+                'Quantidade': produto.qntdEstoque,
+                'Categoria': produto.categoria,
+                'Descrição': produto.descricao,
+            })
+        except Produto.DoesNotExist:
+            print('Produto não encontrado!')
+        except Exception as e:
+            print(f"Erro: {e}")
+
+    def listarProduto():
         try:
             produtos = Produto.select()
             return [
@@ -26,7 +42,7 @@ class ProdutoController(Produto):
         except Exception as e:
             return str(e)
 
-    def atualizarProduto(self, id, nome, preco, qntdEstoque, categoria, descricao):
+    def atualizarProduto( id, nome, preco, qntdEstoque, categoria, descricao):
         try:
             produto = Produto.get(Produto.id == id)
             produto.nome = nome
@@ -41,7 +57,7 @@ class ProdutoController(Produto):
         except Exception as e:
             return False, str(e)
 
-    def excluirProduto(self, id):
+    def excluirProduto( id):
         try:
             produto = Produto.get(Produto.id == id)
             produto.delete_instance()

@@ -1,4 +1,4 @@
-from peewee import Model, CharField, IntegerField, FloatField
+from peewee import CharField, IntegerField, FloatField
 from src.db import BaseModel
 
 class Produto(BaseModel):

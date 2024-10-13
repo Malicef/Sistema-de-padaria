@@ -1,25 +1,25 @@
-from src.control.UsuarioController import UsuarioController
+from src.model.Usuario import *
 from src.model.Funcionario import Funcionario
 
-class FuncionarioController(UsuarioController):
-    def cadastrar(self, nome, email, senha, salario, cargo):
+class FuncionarioController:
+    def cadastrar(nome, email, senha, salario, cargo):
         try:
             user = Funcionario.create(nome=nome, email=email, senha=senha, salario=salario, cargo=cargo)
             return True, "Usuário cadastrado com sucesso!"
         except Exception as e:
             return False, str(e)
         
-    def login(self, email, senha):
+    def login( email, senha):
         try:
             funcionario = Funcionario.get(Funcionario.email == email)
             if funcionario.senha == senha:
-                return True, "Login realizado com sucesso!"
+                return funcionario
             else:
                 return False, "Senha inválida!"
         except Funcionario.DoesNotExist:
             return False, "Email não cadastrado!"
     
-    def listar(self):
+    def listar():
         try:
             funcionario = Funcionario.select()
             return [
@@ -34,7 +34,7 @@ class FuncionarioController(UsuarioController):
         except Exception as e:
             return False, str(e)
         
-    def atualizar(self, id, nome, email, senha, salario, cargo):
+    def atualizar( id, nome, email, senha, salario, cargo):
         try:
             funcionario = Funcionario.get(Funcionario.id == id)
             funcionario.nome = nome
@@ -47,7 +47,7 @@ class FuncionarioController(UsuarioController):
         except Exception as e:
             return False, str(e)
     
-    def deletar(self, nome, email, senha):
+    def deletar(email):
         try:
             Funcionario.delete().where(Funcionario.email == email).execute()
             return True, "Funcionario deletado com sucesso!"

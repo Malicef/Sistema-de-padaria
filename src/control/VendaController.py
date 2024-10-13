@@ -1,33 +1,41 @@
 from src.model.Venda import Venda
 from src.model.Produto import Produto
 
-class VendaController(Venda):
-    def __init__(self):
-        #self.cliente = cliente
-        self.itens = []
-        self.total = 0
+class VendaController():
+    def criarVenda(funcionario, cliente, produto):
+        if not Produto.get_by_id(produto):
+            return False, "Produto não encontrado."
+        venda = Venda.create(funcionario, cliente, produto)
+        return True, "Venda bem sucedida!"
+    
+    def cancelarVenda(venda_id):
+        venda = Venda.get_by_id(venda_id)
+        if not venda:
+            return False, "Venda não encontrada."
+        venda.delete_instance()
+        return True, "Venda cancelada com sucesso!"
+    
+    def listarVendas():
+        vendas = Venda.select()
+        vendas_list = []
+        for venda in vendas:
+            vendas_list.append({
+                "id": venda.id,
+                "funcionario": venda.funcionario.nome,
+                "cliente": venda.cliente.nome,
+                "produto": venda.produto.nome
+            })
+        return vendas_list
+    
+    def buscarVenda(venda_id):
+        venda = Venda.get_by_id(venda_id)
+        if not venda:
+            return False, "Venda não encontrada."
+        return True, {
+            "id": venda.id,
+            "funcionario": venda.funcionario.nome,
+            "cliente": venda.cliente.nome,
+            "produto": venda.produto.nome
+        }
 
-    def adicionarProduto(self, id, quantidade):
-        try:
-            produto = Produto.get(Produto.id == id)
-            if quantidade <= produto.qntdEstoque:
-                produto.qntdEstoque -= quantidade
-                produto.save()
-
-                self.itens.append((produto.nome, quantidade))
-                self.total += produto.preco * quantidade
-
-                print("Produto foi adicionado!")
-                print(f"Total de itens: {self.itens}")
-                print(f"Total: R$ {self.total:.2f}")
-                self.produtoCliente = produto
-            else:
-                print(f"Estoque insuficiente para {produto.nome}.")
-        except Produto.DoesNotExist:
-            print(f"Produto com ID {id} não encontrado.")
-
-    def fecharVenda(self):
-        #print(f"Carrinho de {cliente.nome}")
-        for produto, quantidade in self.itens:
-            print(f"{produto.nome} - {quantidade} unidade(s) - R$ {produto.preco * quantidade:.2f}")
-        print(f"Total: R$ {self.total:.2f}")
+    

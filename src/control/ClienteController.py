@@ -8,7 +8,7 @@ class ClienteController(Cliente):
         except Exception as e:
             return False, str(e)
     
-    def logar(email, senha):
+    def login(email, senha):
         try:
             cliente = Cliente.get(Cliente.email == email)
             if cliente.senha == senha:
