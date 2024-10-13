@@ -8,7 +8,7 @@ class Funcionario(Usuario):
     @property
     def cargo(self):
         return self.__cargo
-    
+
     @cargo.setter
     def cargo(self, cargo):
         self.__cargo = cargo
@@ -16,7 +16,7 @@ class Funcionario(Usuario):
     @property
     def salario(self):
         return self.__salario
-    
+
     @salario.setter
     def salario(self, salario):
         self.__salario = salario

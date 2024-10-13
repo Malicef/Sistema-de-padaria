@@ -1,7 +1,6 @@
 from src.model.ItemVenda import ItemVenda
 from src.control.ProdutoController import ProdutoController
 
-
 class ItemVendaController:
     def criarItemVenda(produto, venda, qntdItem):
         valor = qntdItem * produto.preco
@@ -15,7 +14,3 @@ class ItemVendaController:
             print(f"ID: {item.id}, Produto: {item.produto.nome}, Quantidade: {item.qntdItem}")
             ProdutoController.listarProdutoID(item.produto.id)
             print("Preco total: " )
-
-    
-        
-

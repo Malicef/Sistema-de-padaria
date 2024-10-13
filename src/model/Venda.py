@@ -12,7 +12,7 @@ class Venda(BaseModel):
     @property
     def funcionario(self):
         return self.__funcionario
-    
+
     @funcionario.setter
     def funcionario(self, funcionario):
         self.__funcionario = funcionario
@@ -20,7 +20,7 @@ class Venda(BaseModel):
     @property
     def cliente(self):
         return self.__cliente
-    
+
     @cliente.setter
     def cliente(self, cliente):
         self.__cliente = cliente
@@ -28,10 +28,7 @@ class Venda(BaseModel):
     @property
     def produto(self):
         return self.__produto
-    
+
     @produto.setter
     def produto(self, produto):
         self.__produto = produto
-
-    
-

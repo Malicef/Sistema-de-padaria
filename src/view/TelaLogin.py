@@ -17,6 +17,3 @@ class TelaLogin:
         elif entrada == "2":
             logar = FuncionarioController.login(email, senha)
             return logar
-
-
-

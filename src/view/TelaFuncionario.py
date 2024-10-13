@@ -3,6 +3,7 @@ from src.control.FuncionarioController import *
 from src.control.ProdutoController import *
 from src.control.ClienteController import *
 from src.control.VendaController import *
+from src.control.InputController import InputController
 
 class TelaFuncionario:
     def menuFuncionario(funcionario: Funcionario):
@@ -21,7 +22,7 @@ class TelaFuncionario:
         print("10 - Listar venda")
         print("11 - Excluir venda")
         print("12 - Sair")
-        opcao = int(input("Digite a opção desejada: "))
+        opcao = InputController.getInputInteiro(0,12, "Digite a opção desejada")
 
         if opcao == 1:
             TelaFuncionario.cadastrarProduto(funcionario)

@@ -13,7 +13,7 @@ class ItemVenda(BaseModel):
     @property
     def produto(self):
         return self.__produto
-    
+
     @produto.setter
     def produto(self, produto):
         self.__produto = produto
@@ -21,15 +21,15 @@ class ItemVenda(BaseModel):
     @property
     def venda(self):
         return self.__venda
-    
+
     @venda.setter
     def venda(self, venda):
         self.__venda = venda
-    
+
     @property
     def qntdItem(self):
         return self.__qntdItem
-    
+
     @qntdItem.setter
     def qntdItem(self, qntdItem):
         self.__qntdItem = qntdItem
@@ -37,9 +37,7 @@ class ItemVenda(BaseModel):
     @property
     def valorTotal(self):
         return self.__valorTotal
-    
+
     @valorTotal.setter
     def valorTotal(self, valorTotal):
         self.__valorTotal = valorTotal
-
-  

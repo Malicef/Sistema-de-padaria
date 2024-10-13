@@ -7,14 +7,14 @@ class VendaController():
             return False, "Produto não encontrado."
         venda = Venda.create(funcionario, cliente, produto)
         return True, "Venda bem sucedida!"
-    
+
     def cancelarVenda(venda_id):
         venda = Venda.get_by_id(venda_id)
         if not venda:
             return False, "Venda não encontrada."
         venda.delete_instance()
         return True, "Venda cancelada com sucesso!"
-    
+
     def listarVendas():
         vendas = Venda.select()
         vendas_list = []
@@ -26,7 +26,7 @@ class VendaController():
                 "produto": venda.produto.nome
             })
         return vendas_list
-    
+
     def buscarVenda(venda_id):
         venda = Venda.get_by_id(venda_id)
         if not venda:
@@ -37,5 +37,3 @@ class VendaController():
             "cliente": venda.cliente.nome,
             "produto": venda.produto.nome
         }
-
-    

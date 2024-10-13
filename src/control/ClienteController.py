@@ -1,14 +1,14 @@
 from src.model.Cliente import Cliente
 
 class ClienteController(Cliente):
-    def cadastrar(nome, email, senha):
+    def cadastrar(self, nome, email, senha):
         try:
             cliente = Cliente.create(nome=nome, senha=senha, email=email)
             return True, "Cliente cadastrado com sucesso!"
         except Exception as e:
             return False, str(e)
-    
-    def login(email, senha):
+
+    def logar(self, email, senha):
         try:
             cliente = Cliente.get(Cliente.email == email)
             if cliente.senha == senha:
@@ -17,8 +17,8 @@ class ClienteController(Cliente):
                 return False, "Senha inválida."
         except Cliente.DoesNotExist:
             return False, "Email não encontrado."
-        
-    def listar():
+
+    def listar(self):
         try:
             cliente = Cliente.select()
             return[
@@ -31,8 +31,8 @@ class ClienteController(Cliente):
             ]
         except Exception as e:
             return str(e)
-    
-    def atualizar(nome, senha, email):
+
+    def atualizar(self, nome, senha, email):
         try:
             cliente = Cliente.get(Cliente.email == email)
             cliente.nome = nome
@@ -43,8 +43,8 @@ class ClienteController(Cliente):
             return False, "Cliente não encontrado."
         except Exception as e:
             return False, str(e)
-        
-    def deletar(email):
+
+    def deletar(self, email):
         try:
             Cliente.delete().where(Cliente.email == email).execute()
             return True, "Cliente deletado com sucesso!"

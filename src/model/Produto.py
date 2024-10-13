@@ -19,7 +19,7 @@ class Produto(BaseModel):
     @property
     def preco(self):
         return self.__preco
-    
+
     @preco.setter
     def preco(self, preco):
         if preco < 0:

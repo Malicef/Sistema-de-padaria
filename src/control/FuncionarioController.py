@@ -8,7 +8,7 @@ class FuncionarioController:
             return True, "Usuário cadastrado com sucesso!"
         except Exception as e:
             return False, str(e)
-        
+
     def login( email, senha):
         try:
             funcionario = Funcionario.get(Funcionario.email == email)
@@ -18,7 +18,7 @@ class FuncionarioController:
                 return False, "Senha inválida!"
         except Funcionario.DoesNotExist:
             return False, "Email não cadastrado!"
-    
+
     def listar():
         try:
             funcionario = Funcionario.select()
@@ -33,7 +33,7 @@ class FuncionarioController:
             ]
         except Exception as e:
             return False, str(e)
-        
+
     def atualizar( id, nome, email, senha, salario, cargo):
         try:
             funcionario = Funcionario.get(Funcionario.id == id)
@@ -46,11 +46,10 @@ class FuncionarioController:
             return True, "Funcionário atualizado com sucesso!"
         except Exception as e:
             return False, str(e)
-    
+
     def deletar(email):
         try:
             Funcionario.delete().where(Funcionario.email == email).execute()
             return True, "Funcionario deletado com sucesso!"
         except Exception as e:
             return False, str(e)
-        
