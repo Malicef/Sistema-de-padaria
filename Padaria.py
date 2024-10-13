@@ -5,8 +5,10 @@ from src.model.Cliente import Cliente
 from src.model.Produto import Produto
 from src.model.ItemVenda import ItemVenda
 from src.model.Funcionario import Funcionario
+from src.control.VendaController import VendaController
 from src.control.ProdutoController import ProdutoController
 from src.control.FuncionarioController import FuncionarioController
+
 
 #essa é a main
 def create_db(db):
@@ -20,23 +22,6 @@ def create_db(db):
     db.close()
 
 create_db(db)
-
-#f = FuncionarioController()
-#f.cadastrar("Pedro", "Pedro@gmail.com", "123")
-#f.cadastrar("joao", "joao@gmail.com", "123")
-#f.listar()
-#f.login('Pedro@gmail.com', '124')
-
-p = ProdutoController()
-#p.adicionarProduto("pão de alho", 5.00, 30, "pães", "pão de alho")
-#p.adicionarProduto("pão d'água", 0.50, 60, "pães", "pão d'água")
-#p.listarProduto()
-#p.atualizarProduto(3, "pão gourmet", 10.50, 10, "pães", "pão gourmet")
-
-p.excluirProduto(2)
-p.listarProduto()
-print()
-
 
 '''
 # main template
