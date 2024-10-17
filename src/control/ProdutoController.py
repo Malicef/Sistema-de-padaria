@@ -2,6 +2,7 @@ from src.model.Produto import Produto
 
 class ProdutoController:
 
+    @staticmethod
     def adicionarProduto( nome, preco, qntdEstoque, categoria, descricao):
         try:
             produto = Produto.create(nome=nome, preco=preco, qntdEstoque=qntdEstoque, categoria=categoria, descricao=descricao)
@@ -9,6 +10,7 @@ class ProdutoController:
         except Exception as e:
             print(f"Erro: {e}")
 
+    @staticmethod
     def listarProdutoID(produto_id):
         try:
             produto = Produto.get(Produto.id == produto_id)
@@ -25,7 +27,8 @@ class ProdutoController:
         except Exception as e:
             print(f"Erro: {e}")
 
-    def listarProduto():
+    @staticmethod
+    def listarProdutos():
         try:
             produtos = Produto.select()
             return [
@@ -42,6 +45,7 @@ class ProdutoController:
         except Exception as e:
             return str(e)
 
+    @staticmethod
     def atualizarProduto( id, nome, preco, qntdEstoque, categoria, descricao):
         try:
             produto = Produto.get(Produto.id == id)
@@ -57,6 +61,7 @@ class ProdutoController:
         except Exception as e:
             return False, str(e)
 
+    @staticmethod
     def excluirProduto( id):
         try:
             produto = Produto.get(Produto.id == id)

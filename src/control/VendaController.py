@@ -2,12 +2,14 @@ from src.model.Venda import Venda
 from src.model.Produto import Produto
 
 class VendaController():
+    @staticmethod
     def criarVenda(funcionario, cliente, produto):
         if not Produto.get_by_id(produto):
             return False, "Produto não encontrado."
         venda = Venda.create(funcionario, cliente, produto)
         return True, "Venda bem sucedida!"
 
+    @staticmethod
     def cancelarVenda(venda_id):
         venda = Venda.get_by_id(venda_id)
         if not venda:
@@ -15,7 +17,8 @@ class VendaController():
         venda.delete_instance()
         return True, "Venda cancelada com sucesso!"
 
-    def listarVendas():
+    @staticmethod
+    def listarVenda():
         vendas = Venda.select()
         vendas_list = []
         for venda in vendas:
@@ -27,6 +30,7 @@ class VendaController():
             })
         return vendas_list
 
+    @staticmethod
     def buscarVenda(venda_id):
         venda = Venda.get_by_id(venda_id)
         if not venda:
