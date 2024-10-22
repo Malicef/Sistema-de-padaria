@@ -1,0 +1,435 @@
+ScreenManager:
+    HomeScreen:
+    EscolherLogin:
+    EscolherCadastro:
+    LoginCliente:
+    LoginFuncionario:
+    CadastrarCliente:
+    CadastrarFuncionario:
+
+<HomeScreen>:
+    name: 'home'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+
+        Label:
+            text: 'Bem-vindo ao nosso app!'
+
+        Button:
+            text: 'Fazer Login'
+            size_hint: None, None
+            size: 300, 50
+            pos_hint: {'center_x': 0.5}
+            on_release: app.root.current = 'escolherLogin'
+
+        Button:
+            text: 'Cadastrar-se'
+            size_hint: None, None
+            size: 300, 50
+            pos_hint: {'center_x': 0.5}
+            on_release: app.root.current = 'escolherCadastro'
+
+        Button:
+            text: 'Sair'
+            size_hint: None, None
+            size: 300, 50
+            pos_hint: {'center_x': 0.5}
+            on_release: app.sairDoApp()
+
+<EscolherLogin>
+    name: 'escolherLogin'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+
+        Label:
+            text: 'Escolha o método do login:'
+
+        Button:
+            text: 'Entrar como cliente'
+            size_hint: None, None
+            size: 300, 50
+            pos_hint: {'center_x': 0.5}
+            on_release: app.root.current = 'loginCliente'
+
+        Button:
+            text: 'Entrar como funcionario'
+            size_hint: None, None
+            size: 300, 50
+            pos_hint: {'center_x': 0.5}
+            on_release: app.root.current = 'loginFuncionario'
+
+        Button:
+            text: 'Voltar'
+            size_hint: None, None
+            size: 300, 50
+            pos_hint: {'center_x': 0.5}
+            on_release: app.root.current = 'home'
+
+<EscolherCadastro>
+    name: 'escolherCadastro'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+
+        Label:
+            text: 'Escolha o método do cadastro:'
+
+        Button:
+            text: 'Cadastrar como cliente'
+            size_hint: None, None
+            size: 300, 50
+            pos_hint: {'center_x': 0.5}
+            on_release: app.root.current = 'cadastrarCliente'
+
+        Button:
+            text: 'Cadastrar como funcionario'
+            size_hint: None, None
+            size: 300, 50
+            pos_hint: {'center_x': 0.5}
+            on_release: app.root.current = 'cadastrarFuncionario'
+
+        Button:
+            text: 'Voltar'
+            size_hint: None, None
+            size: 300, 50
+            pos_hint: {'center_x': 0.5}
+            on_release: app.root.current = 'home'
+
+
+<LoginFuncionario>:
+    name: 'loginFuncionario'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+
+        Label:
+            text: 'Bem-vindo de volta!'
+
+        Label:
+            text: 'E-mail*'
+            text_size: self.size
+            size_hint: None, None
+            pos_hint: {'center_x': 0.5}
+            height: 15
+
+        TextInput:
+            id: email
+            size_hint: None, None
+            size: 400, 30
+            pos_hint: {'center_x': 0.5}
+            hint_text: 'Digite o e-mail'
+
+        Label:
+            text: 'Senha*'
+            text_size: self.size
+            size_hint: None, None
+            pos_hint: {'center_x': 0.5}
+            height: 15
+
+        TextInput:
+            id: senha
+            size_hint: None, None
+            size: 400, 30
+            pos_hint: {'center_x': 0.5}
+            hint_text: 'Digite a senha'
+            password: True
+
+        Widget:
+            size_hint_y: 0.3
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: 60
+            spacing: 20
+
+            Widget:
+                size_hint_x: 0.3
+
+            Button:
+                text: 'Voltar'
+                size_hint: None, None
+                size: 300, 50
+                on_release: app.root.current = 'escolherLogin'
+
+            Button:
+                text: 'Entrar'
+                size_hint: None, None
+                size: 300, 50
+                #on_release: app.entrar
+
+            Widget:
+                size_hint_x: 0.3
+
+        Widget:
+            size_hint_y: 0.3
+
+<LoginCliente>:
+    name: 'loginCliente'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+
+        Label:
+            text: 'Bem-vindo de volta!'
+
+        Label:
+            text: 'E-mail*'
+            text_size: self.size
+            size_hint: None, None
+            pos_hint: {'center_x': 0.5}
+            height: 15
+
+        TextInput:
+            id: email
+            size_hint: None, None
+            size: 400, 30
+            pos_hint: {'center_x': 0.5}
+            hint_text: 'Digite o e-mail'
+
+        Label:
+            text: 'Senha*'
+            text_size: self.size
+            size_hint: None, None
+            pos_hint: {'center_x': 0.5}
+            height: 15
+
+        TextInput:
+            id: senha
+            size_hint: None, None
+            size: 400, 30
+            pos_hint: {'center_x': 0.5}
+            hint_text: 'Digite a senha'
+            password: True
+
+        Widget:
+            size_hint_y: 0.3
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: 60
+            spacing: 20
+
+            Widget:
+                size_hint_x: 0.3
+
+            Button:
+                text: 'Voltar'
+                size_hint: None, None
+                size: 300, 50
+                on_release: app.root.current = 'escolherLogin'
+
+            Button:
+                text: 'Entrar'
+                size_hint: None, None
+                size: 300, 50
+                #on_release: app.entrar
+
+            Widget:
+                size_hint_x: 0.3
+
+        Widget:
+            size_hint_y: 0.3
+
+<CadastrarCliente>:
+    name: 'cadastrarCliente'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+
+        Label:
+            text: 'Cadastre-se:'
+
+        Label:
+            text: 'Nome*'
+            text_size: self.size
+            size_hint: None, None
+            pos_hint: {'center_x': 0.5}
+            height: 15
+
+        TextInput:
+            id: nomeCliente
+            size_hint: None, None
+            size: 400, 30
+            pos_hint: {'center_x': 0.5}
+            hint_text: 'Digite o nome'
+
+        Label:
+            text: 'E-mail*'
+            text_size: self.size
+            size_hint: None, None
+            pos_hint: {'center_x': 0.5}
+            height: 15
+
+        TextInput:
+            id: emailClinte
+            size_hint: None, None
+            size: 400, 30
+            pos_hint: {'center_x': 0.5}
+            hint_text: 'Digite o e-mail'
+
+        Label:
+            text: 'Senha*'
+            text_size: self.size
+            size_hint: None, None
+            pos_hint: {'center_x': 0.5}
+            height: 15
+
+        TextInput:
+            id: senhaCliente
+            size_hint: None, None
+            size: 400, 30
+            pos_hint: {'center_x': 0.5}
+            hint_text: 'Digite a senha'
+            password: True
+
+        Widget:
+            size_hint_y: 0.3
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: 60
+            spacing: 20
+
+            Widget:
+                size_hint_x: 0.3
+
+            Button:
+                text: 'Voltar'
+                size_hint: None, None
+                size: 300, 50
+                on_release: app.root.current = 'escolherCadastro'
+
+            Button:
+                text: 'Entrar'
+                size_hint: None, None
+                size: 300, 50
+                #on_release: app.entrar
+
+            Widget:
+                size_hint_x: 0.3
+
+        Widget:
+            size_hint_y: 0.3
+
+<CadastrarFuncionario>:
+    name: 'cadastrarFuncionario'
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+
+        Label:
+            text: 'Cadastre-se'
+
+        Label:
+            text: 'Nome*'
+            text_size: self.size
+            size_hint: None, None
+            pos_hint: {'center_x': 0.5}
+            height: 15
+
+        TextInput:
+            id: nomeFuncionario
+            size_hint: None, None
+            size: 400, 30
+            pos_hint: {'center_x': 0.5}
+            hint_text: 'Digite o nome'
+
+        Label:
+            text: 'E-mail*'
+            text_size: self.size
+            size_hint: None, None
+            pos_hint: {'center_x': 0.5}
+            height: 15
+
+        TextInput:
+            id: emailFuncionario
+            size_hint: None, None
+            size: 400, 30
+            pos_hint: {'center_x': 0.5}
+            hint_text: 'Digite o e-mail'
+
+        Label:
+            text: 'Senha*'
+            text_size: self.size
+            size_hint: None, None
+            pos_hint: {'center_x': 0.5}
+            height: 15
+
+        TextInput:
+            id: senhaFuncionario
+            size_hint: None, None
+            size: 400, 30
+            pos_hint: {'center_x': 0.5}
+            hint_text: 'Digite o senha'
+            password: True
+
+        Label:
+            text: 'Salário*'
+            text_size: self.size
+            size_hint: None, None
+            pos_hint: {'center_x': 0.5}
+            height: 15
+
+        TextInput:
+            id: salarioFuncionario
+            size_hint: None, None
+            size: 400, 30
+            pos_hint: {'center_x': 0.5}
+            hint_text: 'Digite o salário'
+            input_filter: 'float'
+
+        Label:
+            text: 'Cargo*'
+            text_size: self.size
+            size_hint: None, None
+            pos_hint: {'center_x': 0.5}
+            height: 15
+
+        TextInput:
+            id: cargofuncionario
+            size_hint: None, None
+            size: 400, 30
+            pos_hint: {'center_x': 0.5}
+            hint_text: 'Digite o cargo'
+
+        Widget:
+            size_hint_y: 0.3
+
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: 60
+            spacing: 20
+
+            Widget:
+                size_hint_x: 0.3
+
+            Button:
+                text: 'Voltar'
+                size_hint: None, None
+                size: 300, 50
+                on_release: app.root.current = 'escolherCadastro'
+
+            Button:
+                text: 'Entrar'
+                size_hint: None, None
+                size: 300, 50
+                #on_release: app.entrar
+
+            Widget:
+                size_hint_x: 0.3
+
+        Widget:
+            size_hint_y: 0.3

@@ -3,7 +3,7 @@ from src.model.Produto import Produto
 class ProdutoController:
 
     @staticmethod
-    def adicionarProduto( nome, preco, qntdEstoque, categoria, descricao):
+    def adicionarProduto(nome, preco, qntdEstoque, categoria, descricao):
         try:
             produto = Produto.create(nome=nome, preco=preco, qntdEstoque=qntdEstoque, categoria=categoria, descricao=descricao)
             print("Produto cadastrado com sucesso!")
@@ -62,7 +62,7 @@ class ProdutoController:
             return False, str(e)
 
     @staticmethod
-    def excluirProduto( id):
+    def excluirProduto(id):
         try:
             produto = Produto.get(Produto.id == id)
             produto.delete_instance()
