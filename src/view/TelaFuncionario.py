@@ -4,6 +4,7 @@ from src.control.ProdutoController import *
 from src.control.ClienteController import *
 from src.control.VendaController import *
 from src.control.InputController import InputController
+# from src.view import TelaLogin
 from src.view.TelaCadastro import *
 
 class TelaFuncionario:
@@ -13,13 +14,13 @@ class TelaFuncionario:
         print(f"Bem-vindo, {funcionario.nome}!")
         print("\n==Menu Principal==")
         print("1 - Cadastrar Produto")
-        print("2 - Cadastrar Cliente")
-        print("3 - Cadastrar Funcionário")
+        # print("2 - Cadastrar Cliente")
+        # print("3 - Cadastrar Funcionário")
         print("4 - Listar Produtos")
         print("5 - Listar Clientes")
-        print("6 - Excluir Cliente")
+        # print("6 - Excluir Cliente")
         print("7 - Listar Funcionários")
-        print("8 - Excluir Funcionario")
+        # print("8 - Excluir Funcionario")
         print("9 - Realizar Venda")
         print("10 - Listar venda")
         print("11 - Excluir venda")
@@ -53,6 +54,7 @@ class TelaFuncionario:
             TelaFuncionario.buscarVenda(funcionario)
         elif opcao == 13:
             print("Saindo...")
+            exit()
             return 
 
     @staticmethod

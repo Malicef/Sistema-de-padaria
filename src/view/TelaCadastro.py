@@ -1,9 +1,12 @@
 from src.control.ClienteController import ClienteController
 from src.control.FuncionarioController import FuncionarioController
+from src.view.TelaCliente import *
+from src.view.TelaFuncionario import *
 
 class TelaCadastro:
     def menuCadastro():
-        print("Cadastra-se como cliente tecle 1, para cadastra-se como funcionario tecle 2")
+        print("Cadastra-se como cliente tecle 1")
+        print("Cadastra-se como funcionario tecle 2")
         cadastro = int(input())
         if cadastro == 1:
             return TelaCadastro.cadastroCliente()
@@ -16,10 +19,13 @@ class TelaCadastro:
         nome = str(input("Digite o nome    : "))
         email = str(input("Digite o e-mail  : "))
         senha = str(input("Digite a senha   : "))
-        salario = str(input("Digite a salario : "))
         cargo = str(input("Digite o cargo   : "))
         funcionario = FuncionarioController()
-        funcionario.cadastrarFuncionario(nome, email, senha, salario, cargo)
+        funcionario.cadastrarFuncionario(nome, email, senha, cargo)
+        if funcionario:
+            return TelaFuncionario.menuFuncionario(funcionario)
+        else:
+            print("Erro ao cadastrar o funcionário.")
 
     def cadastroCliente():
         print("Cadastro:\n")
@@ -28,3 +34,7 @@ class TelaCadastro:
         senha = str(input("Digite sua senha  : "))
         cliente = ClienteController()
         cliente.cadastrarCliente(nome, email, senha) 
+        if cliente:
+            return TelaCliente.menuCliente(cliente)
+        else:
+            print("Erro ao cadastrar o cliente.")

@@ -25,7 +25,7 @@ def create_db(db):
     db.close()
 
 create_db(db)
-print("==Bem Vindo==")
+print("====== Bem Vindo ======")
 print("1. Login")
 print("2. Cadastre-se")
 print("3. Sair")
@@ -37,7 +37,8 @@ elif entrada == 2:
     cadastro = TelaCadastro.menuCadastro()
 elif entrada == 3:
     print("Saindo...")
+    exit()
 
-TelaFuncionario.menuFuncionario(Funcionario.get_by_id(1))
+
 
             

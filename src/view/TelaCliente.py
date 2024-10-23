@@ -9,12 +9,12 @@ class TelaCliente:
         print("Login efetuado com sucesso!")
         print(f"Bem-vindo, {cliente.nome}!")
         print("\n==Menu Principal==")
-        print("1 - Adicionar ao carrinho")
-        print("2 - Ver items no carrinho")
+        # print("1 - Adicionar ao carrinho")
+        print("2 - Fazer pedido")
         print("3 - Fechar pedido")
-        print("4 - Atualizar conta")
+        print("4 - Listar compras")
         print("5 - Deletar conta")
-        print("6 - Listar compras")
+        print("6 - Atualizar conta")
         opcao = InputController.getInputInteiro(0,6, "Digite a opção desejada")
 
         if opcao == 1:
@@ -35,20 +35,6 @@ class TelaCliente:
         elif opcao == 7:
             print("Saindo...")
             return 
-        
-    # def listarProdutoVenda():
-    #     print("Produtos em seu carrinho:")
-    #     for item in ItemVendaController.listarCarrinho():
-    #         print(f"{item.produto.nome}: {item.quantidade} unidades")
-    #         print(f"Preço unitário: R$ {item.produto.preco}")
-    #         print(f"Subtotal: R$ {item.subtotal()}")
-    #     print(f"Total: R$ {ItemVendaController.totalCarrinho()}")
-    #     print("Deseja finalizar o pedido? (s/n)")
-    #     escolha = InputController.getInputSimNao()
-    #     if escolha == "s":
-    #         ItemVendaController.fecharPedido()
-    #         print("Pedido finalizado com sucesso!")
-    #         menuCliente()
 
     def atualizarCliente():
         novoNome = input("Digite o novo nome: ")

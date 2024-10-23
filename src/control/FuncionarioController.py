@@ -3,9 +3,9 @@ from src.model.Funcionario import Funcionario
 
 class FuncionarioController:
     @staticmethod
-    def cadastrarFuncionario(nome, email, senha, salario, cargo):
+    def cadastrarFuncionario(nome, email, senha, cargo):
         try:
-            user = Funcionario.create(nome=nome, email=email, senha=senha, salario=salario, cargo=cargo)
+            user = Funcionario.create(nome=nome, email=email, senha=senha, cargo=cargo)
             return True, "Usuário cadastrado com sucesso!"
         except Exception as e:
             return False, str(e)
@@ -38,13 +38,12 @@ class FuncionarioController:
             return False, str(e)
 
     @staticmethod
-    def atualizar( id, nome, email, senha, salario, cargo):
+    def atualizar( id, nome, email, senha, cargo):
         try:
             funcionario = Funcionario.get(Funcionario.id == id)
             funcionario.nome = nome
             funcionario.email = email
             funcionario.senha = senha 
-            funcionario.salario = salario
             funcionario.cargo = cargo
             funcionario.save()
             return True, "Funcionário atualizado com sucesso!"

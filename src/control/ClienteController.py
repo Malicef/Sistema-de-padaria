@@ -17,7 +17,7 @@ class ClienteController(Cliente):
             else:
                 return None
         except Cliente.DoesNotExist:
-            return None, "Email não encontrado."
+            return None
     @staticmethod
     def listarClientes():
         try:
