@@ -37,9 +37,9 @@ class TelaFuncionario:
         elif opcao == 5:
             TelaFuncionario.listarClientes()
         elif opcao == 6:
-            TelaFuncionario.excluirCliente()
+            TelaFuncionario.excluirCliente(funcionario)
         elif opcao == 7:
-            TelaFuncionario.listarFuncionarios(funcionario)
+            TelaFuncionario.listarFuncionarios()
         elif opcao == 8:
             TelaFuncionario.excluirFuncionario(funcionario)
         elif opcao == 9:
@@ -52,11 +52,10 @@ class TelaFuncionario:
             TelaFuncionario.buscarVenda(funcionario)
         elif opcao == 13:
             print("Saindo...")
-            exit()
-            return 
+            
 
     @staticmethod
-    def cadastrarProduto(Produto):
+    def cadastrarProduto(funcionario):
         qntd = int(input("Deseja cadastrar quantos produtos? "))
         for i in range(qntd):
             nome = input("Digite o nome do produto: ")
@@ -66,48 +65,55 @@ class TelaFuncionario:
             descricao = input("Digite a descrição do produto: ")
             ProdutoController.adicionarProduto(nome, preco, qntdEstoque, categoria, descricao)
             print("Produto cadastrado com sucesso!")
+        return TelaFuncionario.menuFuncionario(funcionario)
      
     @staticmethod
     def cadastrarCliente(funcionario):
         nome = input("Digite o nome do Cliente: ")
-        email = input("Digite o email do Cliente")
-        senha = input("Digite a senha do cliente")
+        email = input("Digite o email do Cliente: ")
+        senha = input("Digite a senha do cliente: ")
         ClienteController.cadastrarCliente(nome, email, senha)
         print("Cliente cadastrado com sucesso!")
+        return TelaFuncionario.menuFuncionario(funcionario)
 
     @staticmethod
     def cadastrarFuncionario(funcionario):
         nome = input("Digite o nome do Funcionario: ")
-        email = input("Digite o email do Funcionario")
-        senha = input("Digite a senha do Funcionario")
-        cargo = input("Digite o cargo do Funcionario")
-        salario = input("Digite o salario do Funcionario")
-        FuncionarioController.cadastrarFuncionario(nome, email, senha, salario, cargo)
+        email = input("Digite o email do Funcionario: ")
+        senha = input("Digite a senha do Funcionario: ")
+        cargo = input("Digite o cargo do Funcionario: ")
+        FuncionarioController.cadastrarFuncionario(nome, email, senha, cargo)
         print("Funcionario cadastrado com sucesso!")
+        return TelaFuncionario.menuFuncionario(funcionario)
     
     @staticmethod
     def listarProdutos():
-        return ProdutoController.listarProdutos()
+        ProdutoController.listarProdutos()
+        return TelaFuncionario.menuFuncionario(funcionario)
 
     @staticmethod
     def listarClientes():
-        return ClienteController.listarClientes()
+        ClienteController.listarClientes()
+        return TelaFuncionario.menuFuncionario(funcionario)
 
     @staticmethod
     def excluirCliente(email):
         email = input("Digite o email da conta que deseja excluir: ")
         ClienteController.excluirCliente(email)
         print("Conta excluída com sucesso!")
+        return TelaFuncionario.menuFuncionario(funcionario)
 
     @staticmethod
     def listarFuncionarios():
-        return FuncionarioController.listarFuncionarios()
+        FuncionarioController.listarFuncionarios()
+        return TelaFuncionario.menuFuncionario(funcionario)
 
     @staticmethod
     def excluirFuncionario(email):
         email = input("Digite o email do Funcionario que deseja excluir: ")
         FuncionarioController.excluirFuncionario(email)
         print("Funcionario excluído com sucesso!")
+        return TelaFuncionario.menuFuncionario(funcionario)
 
     @staticmethod
     def criarVenda(funcionario):
@@ -131,15 +137,18 @@ class TelaFuncionario:
         novoItem = ItemVendaController.criarItemVenda(produtoBuscado, nova_venda, qntd)
         produtoBuscado.qntdEstoque -= qntd
         ProdutoController.atualizarProduto(produtoBuscado.id, produtoBuscado.nome, produtoBuscado.preco, produtoBuscado.qntdEstoque, produtoBuscado.categoria, produtoBuscado.descricao)
-        return print ("Venda realizada!")
+        print ("Venda realizada!")
+        return TelaFuncionario.menuFuncionario(funcionario)
 
     def listarVenda():
-        return VendaController.listarVenda()
+        VendaController.listarVenda()
+        return TelaFuncionario.menuFuncionario(funcionario)
 
     def buscarVenda():
         VendaController.listarVenda()
         IDvenda =  int(input("Digite o ID da venda que deseja buscar: "))
         venda = VendaController.buscarVenda(venda_id)
+        return TelaFuncionario.menuFuncionario(funcionario)
 
     def cancelarVenda():
         pass

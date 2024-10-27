@@ -18,6 +18,7 @@ class ClienteController(Cliente):
                 return None
         except Cliente.DoesNotExist:
             return None
+
     @staticmethod
     def listarClientes():
         try:
@@ -32,6 +33,7 @@ class ClienteController(Cliente):
             ]
         except Exception as e:
             return str(e)
+            
     @staticmethod
     def atualizarCliente(nome, senha, email):
         try:
