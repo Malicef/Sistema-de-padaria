@@ -31,6 +31,10 @@ class ProdutoController:
     def listarProdutos():
         try:
             produtos = Produto.select()
+
+            if len (produtos) == 0:
+                return False
+
             return [
                 print({
                     'Id': produto.id,

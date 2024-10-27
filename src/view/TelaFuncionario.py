@@ -4,29 +4,27 @@ from src.control.ProdutoController import *
 from src.control.ClienteController import *
 from src.control.VendaController import *
 from src.control.InputController import InputController
-# from src.view import TelaLogin
 from src.view.TelaCadastro import *
 
 class TelaFuncionario:
-
-    def menuFuncionario(funcionario: Funcionario):
+    def menuFuncionario(funcionario : Funcionario):
         print("Login efetuado com sucesso!")
         print(f"Bem-vindo, {funcionario.nome}!")
         print("\n==Menu Principal==")
         print("1 - Cadastrar Produto")
-        # print("2 - Cadastrar Cliente")
-        # print("3 - Cadastrar Funcionário")
+        print("2 - Cadastrar Cliente")
+        print("3 - Cadastrar Funcionário")
         print("4 - Listar Produtos")
         print("5 - Listar Clientes")
-        # print("6 - Excluir Cliente")
+        print("6 - Excluir Cliente")
         print("7 - Listar Funcionários")
-        # print("8 - Excluir Funcionario")
+        print("8 - Excluir Funcionario")
         print("9 - Realizar Venda")
         print("10 - Listar venda")
         print("11 - Excluir venda")
         print("12 - Buscar venda")
         print("13 - Sair")
-        opcao = InputController.getInputInteiro(0,12, "Digite a opção desejada")
+        opcao = InputController.getInputInteiro(0,13, "Digite a opção desejada")
 
         if opcao == 1:
             TelaFuncionario.cadastrarProduto(funcionario)
@@ -41,9 +39,9 @@ class TelaFuncionario:
         elif opcao == 6:
             TelaFuncionario.excluirCliente()
         elif opcao == 7:
-            TelaFuncionario.listarFuncionarios()
+            TelaFuncionario.listarFuncionarios(funcionario)
         elif opcao == 8:
-            TelaFuncionario.excluirFuncionario()
+            TelaFuncionario.excluirFuncionario(funcionario)
         elif opcao == 9:
             TelaFuncionario.criarVenda(funcionario)
         elif opcao == 10:
@@ -68,7 +66,8 @@ class TelaFuncionario:
             descricao = input("Digite a descrição do produto: ")
             ProdutoController.adicionarProduto(nome, preco, qntdEstoque, categoria, descricao)
             print("Produto cadastrado com sucesso!")
-
+     
+    @staticmethod
     def cadastrarCliente(funcionario):
         nome = input("Digite o nome do Cliente: ")
         email = input("Digite o email do Cliente")
@@ -76,6 +75,7 @@ class TelaFuncionario:
         ClienteController.cadastrarCliente(nome, email, senha)
         print("Cliente cadastrado com sucesso!")
 
+    @staticmethod
     def cadastrarFuncionario(funcionario):
         nome = input("Digite o nome do Funcionario: ")
         email = input("Digite o email do Funcionario")
@@ -84,34 +84,62 @@ class TelaFuncionario:
         salario = input("Digite o salario do Funcionario")
         FuncionarioController.cadastrarFuncionario(nome, email, senha, salario, cargo)
         print("Funcionario cadastrado com sucesso!")
-
+    
+    @staticmethod
     def listarProdutos():
         return ProdutoController.listarProdutos()
 
+    @staticmethod
     def listarClientes():
         return ClienteController.listarClientes()
 
+    @staticmethod
     def excluirCliente(email):
         email = input("Digite o email da conta que deseja excluir: ")
         ClienteController.excluirCliente(email)
         print("Conta excluída com sucesso!")
 
+    @staticmethod
     def listarFuncionarios():
         return FuncionarioController.listarFuncionarios()
 
+    @staticmethod
     def excluirFuncionario(email):
         email = input("Digite o email do Funcionario que deseja excluir: ")
         FuncionarioController.excluirFuncionario(email)
         print("Funcionario excluído com sucesso!")
 
-    def criarVenda():
-        pass
+    @staticmethod
+    def criarVenda(funcionario):
+        ClienteController.listarClientes()
+        id_cliente = int(input("Informe o ID do cliente: "))
+        cliente_buscado = ClienteController.buscarCliente(id_cliente)
+
+        if(ProdutoController.listarProdutos() == False):
+            return print("Nenhum produto cadastrado")
+
+        idProduto = int(input("Informe o ID do produto: "))
+        produtoBuscado = ProdutoController.listarProdutoID(produto_id)
+        
+        nova_venda = VendaController.criarVenda(funcionario, cliente_buscado, produtoBuscado)
+
+        qntd = int(input("Informe a quantidade do produto: "))
+        if (qntd > produtoBuscado.qntdEstoque):
+            print("Quantidade informada não existe em estoque!")
+            return 
+
+        novoItem = ItemVendaController.criarItemVenda(produtoBuscado, nova_venda, qntd)
+        produtoBuscado.qntdEstoque -= qntd
+        ProdutoController.atualizarProduto(produtoBuscado.id, produtoBuscado.nome, produtoBuscado.preco, produtoBuscado.qntdEstoque, produtoBuscado.categoria, produtoBuscado.descricao)
+        return print ("Venda realizada!")
 
     def listarVenda():
         return VendaController.listarVenda()
 
     def buscarVenda():
-        pass
+        VendaController.listarVenda()
+        IDvenda =  int(input("Digite o ID da venda que deseja buscar: "))
+        venda = VendaController.buscarVenda(venda_id)
 
     def cancelarVenda():
         pass

@@ -51,3 +51,10 @@ class ClienteController(Cliente):
             return True, "Cliente deletado com sucesso!"
         except Exception as e:
             return False, str(e)
+
+    def buscarCliente(cliente_id):
+        try: 
+            cliente = Cliente.get(Cliente.id == cliente_id)
+            return cliente
+        except Exception as e:
+            return False, str(e)

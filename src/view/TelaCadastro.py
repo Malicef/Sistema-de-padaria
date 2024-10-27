@@ -23,7 +23,8 @@ class TelaCadastro:
         funcionario = FuncionarioController()
         funcionario.cadastrarFuncionario(nome, email, senha, cargo)
         if funcionario:
-            return TelaFuncionario.menuFuncionario(funcionario)
+            user = FuncionarioController.loginFuncionario(email, senha)
+            return TelaFuncionario.menuFuncionario(user)
         else:
             print("Erro ao cadastrar o funcionário.")
 
@@ -34,7 +35,8 @@ class TelaCadastro:
         senha = str(input("Digite sua senha  : "))
         cliente = ClienteController()
         cliente.cadastrarCliente(nome, email, senha) 
-        if cliente:
-            return TelaCliente.menuCliente(cliente)
+        user = cliente.logarCliente(email, senha)
+        if user:
+            return TelaCliente.menuCliente(user)
         else:
             print("Erro ao cadastrar o cliente.")

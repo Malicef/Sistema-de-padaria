@@ -9,7 +9,7 @@ class TelaCliente:
         print("Login efetuado com sucesso!")
         print(f"Bem-vindo, {cliente.nome}!")
         print("\n==Menu Principal==")
-        # print("1 - Adicionar ao carrinho")
+        print("1 - Adicionar ao carrinho")
         print("2 - Fazer pedido")
         print("3 - Fechar pedido")
         print("4 - Listar compras")
