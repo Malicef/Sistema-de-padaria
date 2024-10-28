@@ -9,7 +9,7 @@ class ClienteController(Cliente):
         except Exception as e:
             return False, str(e)
     @staticmethod
-    def logarCliente(email, senha):
+    def login(email, senha):
         try:
             cliente = Cliente.get(Cliente.email == email)
             if cliente.senha == senha:
@@ -35,9 +35,9 @@ class ClienteController(Cliente):
             return str(e)
             
     @staticmethod
-    def atualizarCliente(nome, senha, email):
+    def atualizarCliente(cliente, nome, senha, email):
         try:
-            cliente = Cliente.get(Cliente.email == email)
+            cliente = Cliente.get(Cliente.email == cliente.email)
             cliente.nome = nome
             cliente.senha = senha 
             cliente.email = email

@@ -5,9 +5,8 @@ class VendaController():
     @staticmethod
     def criarVenda(funcionario, cliente, produto):
         try:
-            print(funcionario, cliente, produto)
-            venda = Venda.create(funcionario=funcionario, cliente=cliente, produto=produto)
-            return venda
+            Venda.create(funcionario, cliente, produto)
+            return True, "venda criada"
         except Exception as e:
             return False, str(e)
 

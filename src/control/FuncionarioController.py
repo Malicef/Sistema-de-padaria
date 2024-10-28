@@ -11,7 +11,7 @@ class FuncionarioController:
             return False, str(e)
 
     @staticmethod
-    def loginFuncionario( email, senha):
+    def login( email, senha):
         try:
             funcionario = Funcionario.get(Funcionario.email == email)
             if funcionario.senha == senha:

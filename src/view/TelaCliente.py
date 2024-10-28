@@ -2,19 +2,17 @@ from src.control.ClienteController import ClienteController
 # from src.control.ItemVendaController import ItemVendaController
 from src.control.InputController import InputController
 from src.model.Cliente import *
+from src.model.Funcionario import *
 from src.control.ItemVendaController import *
 
-class TelaCliente:
-    def __init__(self, cliente):
-        self.cliente = cliente
-        self.carrinho = []
+carrinho = []
 
-    def menuCliente(self):
+class TelaCliente:
+
+    def menu (cliente):
         while True:
-            print("Login efetuado com sucesso!")
-            print(f"Bem-vindo, {self.cliente.nome}!")
             print("\n==Menu Principal==")
-            print("1 - Fazer pedido")
+            print("1 - Adicionar ao carrinho")
             print("2 - Fechar pedido")
             print("3 - Listar compras")
             print("4 - Atualizar conta")
@@ -23,31 +21,31 @@ class TelaCliente:
             opcao = InputController.getInputInteiro(0,6, "Digite a opção desejada")
 
             if opcao == 1:
-                self.fazerPedido()
+                TelaCliente.fazerPedido(cliente)
             elif opcao == 2:
-                self.fecharPedido()
+                TelaCliente.fecharPedido(cliente)
             elif opcao == 3:
-                ItemVendaController.listarProdutoVenda()
+                ItemVendaController.listarProdutoVenda(cliente)
             elif opcao == 4:
-                self.atualizarCliente()
+                TelaCliente.atualizarCliente(cliente)
             elif opcao == 5:
-                self.excluirCliente()
+                TelaCliente.excluirCliente(cliente)
             elif opcao == 6:
                 exit("Saindo...")
 
-    def atualizarCliente(self):
+    def atualizarCliente(cliente):
         novoNome = input("Digite o novo nome: ")
         novoEmail = input("Digite o novo email: ")
         novaSenha = input("Digite a nova senha: ")
-        ClienteController.atualizarCliente(nome=novoNome, email=novoEmail, senha=novaSenha)
+        ClienteController.atualizarCliente(cliente ,nome=novoNome, email=novoEmail, senha=novaSenha)
         print("Conta atualizada com sucesso!")
 
-    def excluirCliente(self):
+    def excluirCliente(cliente):
         email = input("Digite o email da conta que deseja excluir: ")
         ClienteController.excluirCliente(email)
         print("Conta excluída com sucesso!")
 
-    def fazerPedido(self):
+    def fazerPedido(cliente):
         print("\n== Produtos Disponíveis ==")
         produtos_disponiveis = ProdutoController.listarProdutos()
 
@@ -71,25 +69,34 @@ class TelaCliente:
                 continue
 
             # Adiciona produto ao carrinho
-            self.carrinho.append((produto, qntd))
+            dict_item = {'produto' : produto,
+                        'qntd' : qntd
+                        }
+
+            carrinho.append(dict_item)
             print(f"{qntd} unidades de {produto.nome} adicionadas ao carrinho.")
 
-    def fecharPedido(self):
-        if not self.carrinho:
+    def fecharPedido(cliente):
+        if not carrinho:
             print("Carrinho vazio. Adicione produtos antes de fechar o pedido.")
             return
 
+        funcionario = Funcionario.get_or_create(nome='Loja Virtual', email='padaria@gmail.com', senha='padaria', cargo='store')
+        
+
         print("\n== Fechando Pedido ==")
-        funcionario_id = int(input("Digite o ID do funcionário responsável pelo pedido: "))
 
         try:
-            venda = VendaController.criarVenda(funcionario_id, self.cliente, None)
+            # Cria a venda e os itens da venda
+            for item in carrinho:
+                produto = item['produto']
+                qntd = item['qntd']
+                VendaController.criarVenda(cliente, funcionario[0], produto)
+                venda = Venda.get_or_create(cliente=cliente, funcionario=funcionario[0], produto=produto)
+                ItemVendaController.criarItemVenda(produto, venda[0], qntd)
+                print(f"{qntd} unidades de {produto.nome} adicionadas ao pedido.")
 
-            # Adiciona os itens da venda
-            for produto, qntd in self.carrinho:
-                ItemVendaController.criarItemVenda(produto, venda, qntd)
-
-                # Atualiza o estoque do produto
+            # Atualiza o estoque do produto
                 novo_estoque = produto.qntdEstoque - qntd
                 ProdutoController.atualizarProduto(
                     produto.id, produto.nome, produto.preco, novo_estoque,
@@ -97,7 +104,7 @@ class TelaCliente:
                 )
 
             print("Pedido fechado com sucesso!")
-            self.carrinho.clear()
+            carrinho.clear()
 
         except Exception as e:
             print(f"Erro ao fechar pedido: {e}")

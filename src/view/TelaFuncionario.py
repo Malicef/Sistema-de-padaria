@@ -7,10 +7,8 @@ from src.control.InputController import InputController
 from src.view.TelaCadastro import *
 
 class TelaFuncionario:
-    def menuFuncionario(funcionario : Funcionario):
+    def menu(funcionario : Funcionario):
         while True:
-            print("Login efetuado com sucesso!")
-            print(f"Bem-vindo, {funcionario.nome}!")
             print("\n==Menu Principal==")
             print("1 - Cadastrar Produto")
             print("2 - Cadastrar Cliente")
@@ -50,6 +48,7 @@ class TelaFuncionario:
                 TelaFuncionario.buscarVenda(funcionario)
             elif opcao == 12:
                 print("Saindo...")
+                exit()
 
     @staticmethod
     def cadastrarProduto(funcionario):

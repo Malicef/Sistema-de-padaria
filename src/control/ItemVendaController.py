@@ -6,11 +6,11 @@ class ItemVendaController:
     @staticmethod
     def criarItemVenda(produto, venda, qntdItem):
         valor = qntdItem * produto.preco
-        item = ItemVenda.create(produto=produto, venda=venda, qntdItem=qntdItem, valorTotal=valor)
+        item = ItemVenda.get_or_create(produto=produto, venda=venda, qntdItem=qntdItem, valorTotal=valor)
         return item
     
     @staticmethod
-    def listarProdutoVenda():
+    def listarProdutoVenda(cliente):
         i = ItemVenda.select()
         for item in i:
             print(f"ID: {item.id}, Produto: {item.produto.nome}, Quantidade: {item.qntdItem}")
@@ -19,7 +19,6 @@ class ItemVendaController:
 
     def listarItemVendaId(id_venda):
         try:
-            print(id_venda)
             vendas = ItemVenda.select()
 
             for v in vendas:
