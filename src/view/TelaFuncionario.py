@@ -122,7 +122,7 @@ class TelaFuncionario:
 
         idProduto = int(input("Informe o ID do produto: "))
         produtoBuscado = ProdutoController.buscarProduto(idProduto)
-        
+
         nova_venda = VendaController.criarVenda(funcionario, cliente_buscado, produtoBuscado)
 
         qntd = int(input("Informe a quantidade do produto: "))

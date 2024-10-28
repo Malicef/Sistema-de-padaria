@@ -30,6 +30,7 @@ class TelaCliente:
                 TelaCliente.atualizarCliente(cliente)
             elif opcao == 5:
                 TelaCliente.excluirCliente(cliente)
+                exit("Saindo...")
             elif opcao == 6:
                 exit("Saindo...")
 
