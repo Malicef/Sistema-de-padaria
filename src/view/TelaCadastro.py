@@ -5,7 +5,7 @@ from src.view.TelaFuncionario import *
 
 class TelaCadastro:
     def menuCadastro():
-        print("Cadastra-se como cliente tecle 1")
+        print("Cadastra-se como cliente tecle 1\n")
         print("Cadastra-se como funcionario tecle 2")
         cadastro = int(input())
         if cadastro == 1:
@@ -15,7 +15,7 @@ class TelaCadastro:
             return TelaCadastro.cadastroFuncionario()
 
     def cadastroFuncionario():
-        print("Cadastro de funcionário:\n")
+        print("Cadastro:\n")
         nome = str(input("Digite o nome    : "))
         email = str(input("Digite o e-mail  : "))
         senha = str(input("Digite a senha   : "))
@@ -23,8 +23,8 @@ class TelaCadastro:
         funcionario = FuncionarioController()
         funcionario.cadastrarFuncionario(nome, email, senha, cargo)
         if funcionario:
-            user = FuncionarioController.loginFuncionario(email, senha)
-            return TelaFuncionario.menuFuncionario(user)
+            user = FuncionarioController.login(email, senha)
+            return TelaFuncionario.menu(user)
             print("Cadastro efetuado com sucesso!")
             print(f"Bem-vindo, {cliente.nome}!")
 
@@ -38,9 +38,10 @@ class TelaCadastro:
         senha = str(input("Digite sua senha  : "))
         cliente = ClienteController()
         cliente.cadastrarCliente(nome, email, senha) 
-        user = cliente.logarCliente(email, senha)
-        if user:
-            return TelaCliente(user).menuCliente()
+        user = cliente.login(email, senha)
+        if cliente:
+            user = cliente.login(email, senha)
+            return TelaCliente.menu(user)
             print("Cadastro efetuado com sucesso!")
             print(f"Bem-vindo, {cliente.nome}!")
         else:
