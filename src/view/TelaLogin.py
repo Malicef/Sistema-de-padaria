@@ -8,9 +8,10 @@ class TelaLogin:
     def login():
         print("==Login==")
         print("Entrar como cliente tecle 1, para entrar como funcionario tecle 2" )
-        
+
         try:
             entrada = int(input())
+            self.menuCliente()
 
             email = input("Digite seu email: ")
             senha = input("Digite sua senha: ")
@@ -18,7 +19,7 @@ class TelaLogin:
             if entrada == 1:
                 cliente = ClienteController.logarCliente(email, senha)
                 if cliente is not None:
-                    return TelaCliente.menuCliente(cliente)
+                    return TelaCliente(cliente).menuCliente()
                     print("Login efetuado com sucesso!")
                     print(f"Bem-vindo, {cliente.nome}!")
 

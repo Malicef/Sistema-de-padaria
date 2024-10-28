@@ -24,7 +24,7 @@ class TelaFuncionario:
             print("10 - Listar venda")
             print("11 - Buscar venda")
             print("12 - Sair")
-            opcao = InputController.getInputInteiro(0,13, "Digite a opção desejada")
+            opcao = InputController.getInputInteiro(0,12, "Digite a opção desejada")
 
             if opcao == 1:
                 TelaFuncionario.cadastrarProduto(funcionario)
@@ -50,7 +50,6 @@ class TelaFuncionario:
                 TelaFuncionario.buscarVenda(funcionario)
             elif opcao == 12:
                 print("Saindo...")
-            
 
     @staticmethod
     def cadastrarProduto(funcionario):

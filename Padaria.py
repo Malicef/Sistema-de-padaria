@@ -26,7 +26,3 @@ elif entrada == 2:
 elif entrada == 3:
     print("Saindo...")
     exit()
-
-
-
-            

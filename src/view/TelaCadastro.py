@@ -37,6 +37,6 @@ class TelaCadastro:
         cliente.cadastrarCliente(nome, email, senha) 
         user = cliente.logarCliente(email, senha)
         if user:
-            return TelaCliente.menuCliente(user)
+            return TelaCliente(user).menuCliente()
         else:
             print("Erro ao cadastrar o cliente.")
