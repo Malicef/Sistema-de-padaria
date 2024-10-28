@@ -13,7 +13,6 @@ def create_db(db):
     db.close()
 
 create_db(db)
-
 print("====== Bem Vindo ======")
 print("1. Login")
 print("2. Cadastre-se")

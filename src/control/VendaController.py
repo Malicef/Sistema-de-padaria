@@ -4,40 +4,33 @@ from src.model.Produto import Produto
 class VendaController():
     @staticmethod
     def criarVenda(funcionario, cliente, produto):
-        if not Produto.get_by_id(produto):
-            return False, "Produto não encontrado."
-        venda = Venda.create(funcionario, cliente, produto)
-        return True, "Venda bem sucedida!"
-
-    @staticmethod
-    def cancelarVenda(venda_id):
-        venda = Venda.get_by_id(venda_id)
-        if not venda:
-            return False, "Venda não encontrada."
-        venda.delete_instance()
-        return True, "Venda cancelada com sucesso!"
+        try:
+            print(funcionario, cliente, produto)
+            venda = Venda.create(funcionario=funcionario, cliente=cliente, produto=produto)
+            return venda
+        except Exception as e:
+            return False, str(e)
 
     @staticmethod
     def listarVenda():
-        vendas = Venda.select()
-        vendas_list = []
-        for venda in vendas:
-            vendas_list.append({
-                "id": venda.id,
-                "funcionario": venda.funcionario.nome,
-                "cliente": venda.cliente.nome,
-                "produto": venda.produto.nome
-            })
-        return vendas_list
+        try:
+            venda = Venda.select()
+            return[
+                print({
+                    "id": venda.id,
+                    "funcionario": venda.funcionario.nome,
+                    "cliente": venda.cliente.nome,
+                    "produto": venda.produto.nome
+                })
+            for venda in venda
+            ]
+        except Exception as e:
+            return False, str(e)
 
     @staticmethod
     def buscarVenda(venda_id):
-        venda = Venda.get_by_id(venda_id)
-        if not venda:
-            return False, "Venda não encontrada."
-        return True, {
-            "id": venda.id,
-            "funcionario": venda.funcionario.nome,
-            "cliente": venda.cliente.nome,
-            "produto": venda.produto.nome
-        }
+        try:
+            venda = Venda.get(Venda_id == venda_id)
+            return venda
+        except Exception as e:
+            return False, str(e)

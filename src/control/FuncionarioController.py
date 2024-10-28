@@ -25,11 +25,10 @@ class FuncionarioController:
     def listarFuncionarios():
         try:
             funcionario = Funcionario.select()
-            return [
+            return[
                 print({
                     "nome": funcionario.nome,
                     "email": funcionario.email,
-                    "salario": funcionario.salario,
                     "cargo": funcionario.cargo
                 })
                 for funcionario in funcionario

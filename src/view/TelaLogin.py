@@ -19,12 +19,17 @@ class TelaLogin:
                 cliente = ClienteController.logarCliente(email, senha)
                 if cliente is not None:
                     return TelaCliente.menuCliente(cliente)
+                    print("Login efetuado com sucesso!")
+                    print(f"Bem-vindo, {cliente.nome}!")
+
                 else:
                     print("Login ou senha inválidos!")
             elif entrada == 2:
                 funcionario = FuncionarioController.loginFuncionario(email, senha)
                 if funcionario is not None:
                     return TelaFuncionario.menuFuncionario(funcionario)
+                    print("Login efetuado com sucesso!")
+                    print(f"Bem-vindo, {funcionario.nome}!")
                 else:
                     print("Login ou senha inválidos!")
             else:

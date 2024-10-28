@@ -75,3 +75,10 @@ class ProdutoController:
             return False, 'Produto não encontrado!'
         except Exception as e:
             return False, str(e)
+
+    def buscarProduto(produto_id):
+        try: 
+            produto = Produto.get(Produto.id == produto_id)
+            return produto
+        except Exception as e:
+            return False, str(e)
